@@ -1,0 +1,15 @@
+# 텍스처 누락
+SO ./textures/south_texture.xpm
+WE ./textures/west_texture.xpm
+EA ./textures/east_texture.xpm
+
+# 색상 값 (R, G, B)
+F 220,100,0
+C 135,206,250
+
+# 기본 맵 데이터
+111111
+100001
+1010N1
+100001
+111111

@@ -1,0 +1,18 @@
+# 텍스처 경로
+NO ./textures/north_texture.xpm
+SO ./textures/south_texture.xpm
+WE ./textures/west_texture.xpm
+EA ./textures/east_texture.xpm
+
+# 색상 값 (R, G, B)
+F 150,150,150
+C 200,200,200
+
+# 닫히지 않은 맵 데이터
+111111111111
+100000000001
+100000000001
+10000N000001
+100000000001
+100000000001
+111111111110

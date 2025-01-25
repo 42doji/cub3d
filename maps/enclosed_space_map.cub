@@ -1,0 +1,16 @@
+# 텍스처 경로
+NO ./textures/north_texture.xpm
+SO ./textures/south_texture.xpm
+WE ./textures/west_texture.xpm
+EA ./textures/east_texture.xpm
+
+# 색상 값 (R, G, B)
+F 80,80,80
+C 160,160,160
+
+# 좁은 공간 맵 데이터
+111111
+1N0001
+101011
+101001
+111111
