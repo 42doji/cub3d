@@ -23,8 +23,10 @@ int is_wall(double x, double y, char **map)
 
 void cast_rays(void *mlx, void *win, t_player *player, char **map)
 {
+    int bpp, size_line, endian;
     void *img = mlx_new_image(mlx, WIDTH, HEIGHT); // 새로운 이미지 생성
-    char *buffer = mlx_get_data_addr(img, &(int){0}, &(int){0}, &(int){0}); // 이미지 버퍼 가져오기
+    char *buffer = mlx_get_data_addr(img, &bpp, &size_line, &endian); // 이미지 버퍼 가져오기
+    int bytes_per_pixel = bpp / 8;
 
     for (int col = 0; col < WIDTH; col++)
     {
@@ -42,7 +44,7 @@ void cast_rays(void *mlx, void *win, t_player *player, char **map)
             if (is_wall(map_x, map_y, map))
                 break;
 
-            distance += 0.1;
+            distance += 0.2; // 더 큰 값으로 최적화 가능
         }
 
         int wall_height = (int)(HEIGHT / (distance ? distance : 1));
@@ -59,11 +61,10 @@ void cast_rays(void *mlx, void *win, t_player *player, char **map)
                         0xAAAAAA; // 벽색
 
             // 픽셀 데이터를 이미지 버퍼에 직접 씁니다.
-            int offset = (y * WIDTH + col) * 4; // 각 픽셀의 오프셋 계산
+            int offset = (y * size_line) + (col * bytes_per_pixel); // 크기 계산 수정
             buffer[offset] = color & 0xFF;           // Blue
             buffer[offset + 1] = (color >> 8) & 0xFF; // Green
             buffer[offset + 2] = (color >> 16) & 0xFF; // Red
-            buffer[offset + 3] = 0;                   // Alpha (사용 안 함)
         }
     }
 
@@ -73,5 +74,4 @@ void cast_rays(void *mlx, void *win, t_player *player, char **map)
     // 이미지 삭제 (다음 프레임에서 새로운 이미지를 생성하기 위해)
     mlx_destroy_image(mlx, img);
 }
-
 

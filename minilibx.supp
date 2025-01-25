@@ -4,6 +4,8 @@
    writev(vector[...])
    fun:writev
    obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+   fun:mlx_int_anti_resize_win
+   fun:mlx_new_window
 }
 {
    still_reachable_memory

@@ -2,11 +2,6 @@
 #include "./minilibx/mlx.h"
 #include <math.h>
 
-#define MOVE_SPEED 0.1
-#define ROT_SPEED 0.05
-#define COLLISION_DISTANCE 0.2
-#define WIDTH 800
-#define HEIGHT 600
 
 int key_states[256] = {0}; // 키 상태 배열
 
@@ -18,13 +13,24 @@ void cleanup(t_config *config)
         config->win = NULL;
     }
 
+    // 이미지 메모리 해제 (예시)
+    if (config->images) {
+        for (int i = 0; i < config->num_images; i++) {
+            if (config->images[i])
+                mlx_destroy_image(config->mlx, config->images[i]);
+        }
+        free(config->images);
+        config->images = NULL;
+    }
+
     if (config->mlx)
     {
-        mlx_destroy_display(config->mlx); // 디스플레이 해제
+        mlx_destroy_display(config->mlx); // X11 디스플레이 해제
         free(config->mlx);               // MiniLibX 컨텍스트 해제
         config->mlx = NULL;
     }
 }
+
 
 
 
@@ -113,7 +119,6 @@ int main(int argc, char **argv)
         free_config(&config);
         return (1);
     }
-
     config.win = mlx_new_window(config.mlx, WIDTH, HEIGHT, "cub3D");
     if (!config.win)
     {

@@ -1,14 +1,20 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-#include "./get_next_line/get_next_line.h"
-#include "./ft_split/ft_split.h"
-#include "./minilibx/mlx.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <math.h>
+# include "./get_next_line/get_next_line.h"
+# include "./ft_split/ft_split.h"
+# include "./minilibx/mlx.h"
+
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.05
+# define COLLISION_DISTANCE 0.2
+# define WIDTH 800
+# define HEIGHT 600
 
 typedef struct s_player
 {
@@ -30,6 +36,7 @@ typedef struct s_config
 	t_player player;      // 플레이어 정보
 	void *mlx;            // MiniLibX 컨텍스트
 	void *win;            // MiniLibX 윈도우 객체
+	void **images;        // 이미지 배열
 } t_config;
 
 // 설정 파일 파싱

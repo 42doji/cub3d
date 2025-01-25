@@ -3,17 +3,36 @@
 
 void parse_texture(char *line, t_config *config)
 {
-	if (strncmp(line, "NO ", 3) == 0)
-		config->north_texture = strdup(line + 3);
-	else if (strncmp(line, "SO ", 3) == 0)
-		config->south_texture = strdup(line + 3);
-	else if (strncmp(line, "WE ", 3) == 0)
-		config->west_texture = strdup(line + 3);
-	else if (strncmp(line, "EA ", 3) == 0)
-		config->east_texture = strdup(line + 3);
-	else
-		error_exit("Invalid texture key");
+    if (strncmp(line, "NO ", 3) == 0)
+    {
+        if (config->north_texture)
+            free(config->north_texture); // 기존 값 해제
+        config->north_texture = strdup(line + 3);
+    }
+    else if (strncmp(line, "SO ", 3) == 0)
+    {
+        if (config->south_texture)
+            free(config->south_texture); // 기존 값 해제
+        config->south_texture = strdup(line + 3);
+    }
+    else if (strncmp(line, "WE ", 3) == 0)
+    {
+        if (config->west_texture)
+            free(config->west_texture); // 기존 값 해제
+        config->west_texture = strdup(line + 3);
+    }
+    else if (strncmp(line, "EA ", 3) == 0)
+    {
+        if (config->east_texture)
+            free(config->east_texture); // 기존 값 해제
+        config->east_texture = strdup(line + 3);
+    }
+    else
+    {
+        error_exit("Invalid texture key");
+    }
 }
+
 void parse_map(char *line, t_config *config) {
     int i = 0;
 
@@ -161,26 +180,36 @@ void add_map_line(t_config *config, char *line) {
     char **new_map;
     int map_size = 0;
 
+    // 현재 맵의 크기 계산
     while (config->map && config->map[map_size])
         map_size++;
+
+    // 맵 크기 증가 (기존 크기 + 2)
     new_map = realloc(config->map, sizeof(char *) * (map_size + 2));
     if (!new_map) {
-        free_config(config);
+        free_config(config); // 기존 메모리 해제
         error_exit("Memory allocation failed");
     }
     config->map = new_map;
 
-    // 데이터를 복사하기 전에 공백 및 개행 문자 제거
+    // 문자열에서 앞뒤 공백과 개행 문자 제거
+    while (*line == ' ') // 앞쪽 공백 제거
+        line++;
+
     int len = strlen(line);
     while (len > 0 && (line[len - 1] == ' ' || line[len - 1] == '\n')) {
-        line[len - 1] = '\0'; // 개행 문자 제거
+        line[len - 1] = '\0'; // 뒤쪽 공백 제거
         len--;
     }
 
+    // 새 맵 라인 추가
     config->map[map_size] = strdup(line);
-    if (!config->map[map_size])
+    if (!config->map[map_size]) { // 할당 실패 시 정리
+        free_config(config); // 기존 메모리 해제
         error_exit("Memory allocation failed");
-    config->map[map_size + 1] = NULL;
+    }
+
+    config->map[map_size + 1] = NULL; // 맵 끝 표시
 }
 
 
@@ -216,35 +245,28 @@ void parse_config(const char *filename, t_config *config)
     fd = open(filename, O_RDONLY);
     if (fd < 0)
         error_exit("Failed to open file. Check if the file exists and the path is correct.");
+    if (!config->north_texture || !config->south_texture ||
+        !config->west_texture || !config->east_texture)
     parse_process(fd, config);
     close(fd);
 }
 
+
 void free_config(t_config *config)
 {
-    if (config->north_texture) {
+    if (config->north_texture)
         free(config->north_texture);
-        config->north_texture = NULL;
-    }
-    if (config->south_texture) {
+    if (config->south_texture)
         free(config->south_texture);
-        config->south_texture = NULL;
-    }
-    if (config->west_texture) {
+    if (config->west_texture)
         free(config->west_texture);
-        config->west_texture = NULL;
-    }
-    if (config->east_texture) {
+    if (config->east_texture)
         free(config->east_texture);
-        config->east_texture = NULL;
-    }
+
     if (config->map) {
-        for (int i = 0; config->map[i]; i++) {
+        for (int i = 0; config->map[i]; i++)
             free(config->map[i]);
-            config->map[i] = NULL;
-        }
         free(config->map);
-        config->map = NULL;
     }
 }
 
@@ -264,4 +286,6 @@ void init_config(t_config *config)
     config->ceiling_color[2] = -1;
     config->map = NULL;
     config->player_count = 0;
+    config->mlx = NULL;
+    config->win = NULL;
 }
