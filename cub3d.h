@@ -21,5 +21,19 @@ typedef struct s_config
 	char **map;
 } t_config;
 
+void parse_texture(char *line, t_config *config);
+void parse_color(char *line, int *color);
+void parse_map(char *line, t_config *config);
+void parse_process(int fd, t_config *config);
+void parse_file(const char *filename, t_config *config);
+void parse_config(const char *filename, t_config *config);
+
+void add_map_line(t_config *config, char *line);
+void set_color(int *color, char **split);
+
+void init_config(t_config *config);
+void free_config(t_config *config);
+void print_config(t_config *config);
+void error_exit(const char *msg);
 
 #endif //CUB3D_H

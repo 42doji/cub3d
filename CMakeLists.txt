@@ -6,8 +6,7 @@ set(CMAKE_C_STANDARD 99)
 add_executable(42cub3d main.c
         Makefile.
         cub3d.h
-        parser.c
-        parser.h
+        parser/parser.c
         ft_split/ft_split.c
         ft_split/ft_split_utils.c
         ft_split/ft_split.h

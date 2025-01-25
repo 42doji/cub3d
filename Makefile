@@ -14,14 +14,15 @@ FTSPLIT_DIR = ./ft_split
 FTSPLIT     = $(FTSPLIT_DIR)/ft_split.c \
 			  $(FTSPLIT_DIR)/ft_split_utils.c \
 			  $(FTSPLIT_DIR)/ft_atoi.c
+PARSER_DIR  = ./parser
 SRCS        = main.c \
 			  $(GNL) \
-			  $(FTSPLIT)
+			  $(FTSPLIT) \
+			  $(PARSER_DIR)/parser.c
 OBJS        = $(SRCS:.c=.o)
 HEADERS     = cub3d.h \
 			  $(GNL_DIR)/get_next_line.h \
 			  $(FTSPLIT_DIR)/ft_split.h
-
 # **************************************************************************** #
 #                                   RULES                                      #
 # **************************************************************************** #
