@@ -4,4 +4,12 @@ project(42cub3d C)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(42cub3d main.c
-        Makefile.)
+        Makefile.
+        cub3d.h
+        parser.c
+        parser.h
+        ft_split/ft_split.c
+        ft_split/ft_split_utils.c
+        ft_split/ft_split.h
+        main.c
+        cub3d.h)
