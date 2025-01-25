@@ -220,7 +220,8 @@ void parse_config(const char *filename, t_config *config)
     close(fd);
 }
 
-void free_config(t_config *config) {
+void free_config(t_config *config)
+{
     if (config->north_texture) {
         free(config->north_texture);
         config->north_texture = NULL;
@@ -246,8 +247,6 @@ void free_config(t_config *config) {
         config->map = NULL;
     }
 }
-
-
 
 void init_config(t_config *config)
 {

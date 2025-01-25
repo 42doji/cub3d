@@ -139,6 +139,6 @@ int is_map_valid(t_config *config) {
 		printf("Error: Player count is not 1.\n");
 		return 0;
 	}
-
+	printf("Map is valid.\n");
 	return 1;
 }
