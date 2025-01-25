@@ -55,7 +55,8 @@
 				0,
 				3,
 				4,
-				5
+				5,
+				8
 			]
 		}
 	],
@@ -95,7 +96,8 @@
 				0,
 				3,
 				4,
-				5
+				5,
+				8
 			]
 		},
 		{
@@ -158,8 +160,14 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "map_validator/map_validator.h",
+			"path" : "validator/validator.h",
 			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "raycaster.c",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"

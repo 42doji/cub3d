@@ -12,4 +12,5 @@ add_executable(42cub3d main.c
         ft_split/ft_split.h
         main.c
         cub3d.h
-        validator/validator.h)
+        validator/validator.h
+        raycaster.c)

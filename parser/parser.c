@@ -248,6 +248,8 @@ void free_config(t_config *config)
     }
 }
 
+
+
 void init_config(t_config *config)
 {
     config->north_texture = NULL;

@@ -12,7 +12,8 @@ SRCS        = main.c \
               ft_split/ft_split.c \
               ft_split/ft_split_utils.c \
               ft_split/ft_atoi.c \
-              parser/parser.c
+              parser/parser.c \
+              raycaster.c
 
 OBJS        = $(SRCS:.c=.o)
 
