@@ -9,11 +9,15 @@ SRCS        = main.c \
               validator/map_validator.c \
               get_next_line/get_next_line.c \
               get_next_line/get_next_line_utils.c \
-              ft_split/ft_split.c \
-              ft_split/ft_split_utils.c \
-              ft_split/ft_atoi.c \
+              libs/ft_split.c \
+              libs/ft_split_utils.c \
+              libs/ft_atoi.c \
+              libs/lib_utils.c \
               parser/parser.c \
-              raycaster.c
+              parser/memory.c \
+              raycaster.c \
+              error.c
+
 
 OBJS        = $(SRCS:.c=.o)
 

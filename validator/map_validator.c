@@ -1,6 +1,5 @@
 #include "validator.h"
 
-// 플레이어 위치와 개수를 확인하는 함수
 int check_player_position(char **map, int *player_count)
 {
 	int i;
@@ -95,7 +94,7 @@ int check_valid_characters(char **map)
     {
 		j = 0;
 		while (map[i][j])
-        { // 해당 행의 각 문자에 대해 반복
+        {
 			if (!ft_strchr("01NSEW ", map[i][j]))
 				return (printf("Error: Invalid character '%c' at row %d, column %d.\n", map[i][j], i, j), 0);
 			j++;
@@ -107,19 +106,33 @@ int check_valid_characters(char **map)
 
 int is_map_valid(t_config *config)
 {
-	if (!config->north_texture || !config->south_texture || !config->west_texture || !config->east_texture)
-		return (printf("Error: Texture path is not defined.\n"), 0);
+	if (!config->map)
+		return (printf("Error: Map is NULL.\n"), 0);
+
+	if (!config->map[0])
+		return (printf("Error: Map is empty.\n"), 0);
+
+	if (!config->texture.north || !config->texture.south ||
+		!config->texture.west || !config->texture.east)
+	{
+		return (printf("Error: Texture paths are not set.\n"), 0);
+	}
+
 	printf("Checking player position...\n");
 	if (!check_player_position(config->map, &config->player_count))
 		return (printf("Error: Player count is not 1.\n"), 0);
+
 	printf("Checking map borders...\n");
 	if (!check_map_borders(config->map))
 		return (printf("Error: Map borders are not valid.\n"), 0);
+
 	printf("Checking valid characters...\n");
 	if (!check_valid_characters(config->map))
 		return (printf("Error: Invalid characters in map.\n"), 0);
+
 	if (config->player_count != 1)
 		return (printf("Error: Player count is not 1.\n"), 0);
+
 	printf("Map is valid.\n");
 	print_config(config);
 	return 1;

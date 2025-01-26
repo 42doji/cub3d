@@ -2,13 +2,6 @@
 #include "./minilibx/mlx.h"
 #include <math.h>
 
-#define WIDTH 800
-#define HEIGHT 600
-#define FOV 60 * (M_PI / 180) // 시야각 60도를 라디안으로 변환
-
-
-
-
 // 맵에서 충돌 확인
 int is_wall(double x, double y, char **map)
 {
@@ -21,7 +14,7 @@ int is_wall(double x, double y, char **map)
 }
 
 
-void cast_rays(void *mlx, void *win, t_player *player, char **map)
+void cast_rays(t_config)
 {
     int bpp, size_line, endian;
     void *img = mlx_new_image(mlx, WIDTH, HEIGHT); // 새로운 이미지 생성
@@ -74,4 +67,5 @@ void cast_rays(void *mlx, void *win, t_player *player, char **map)
     // 이미지 삭제 (다음 프레임에서 새로운 이미지를 생성하기 위해)
     mlx_destroy_image(mlx, img);
 }
+
 

@@ -61,23 +61,59 @@ build CMakeFiles/42cub3d.dir/parser/parser.c.obj: C_COMPILER__42cub3d_unscanned_
   OBJECT_DIR = CMakeFiles\42cub3d.dir
   OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\parser
 
-build CMakeFiles/42cub3d.dir/ft_split/ft_split.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/ft_split/ft_split.c || cmake_object_order_depends_target_42cub3d
-  DEP_FILE = CMakeFiles\42cub3d.dir\ft_split\ft_split.c.obj.d
+build CMakeFiles/42cub3d.dir/libs/ft_split.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/libs/ft_split.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\libs\ft_split.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\42cub3d.dir
-  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\ft_split
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\libs
 
-build CMakeFiles/42cub3d.dir/ft_split/ft_split_utils.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/ft_split/ft_split_utils.c || cmake_object_order_depends_target_42cub3d
-  DEP_FILE = CMakeFiles\42cub3d.dir\ft_split\ft_split_utils.c.obj.d
+build CMakeFiles/42cub3d.dir/libs/ft_split_utils.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/libs/ft_split_utils.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\libs\ft_split_utils.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\42cub3d.dir
-  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\ft_split
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\libs
 
 build CMakeFiles/42cub3d.dir/raycaster.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/raycaster.c || cmake_object_order_depends_target_42cub3d
   DEP_FILE = CMakeFiles\42cub3d.dir\raycaster.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\42cub3d.dir
   OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir
+
+build CMakeFiles/42cub3d.dir/initialize.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/initialize.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\initialize.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\42cub3d.dir
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir
+
+build CMakeFiles/42cub3d.dir/libs/lib_utils.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/libs/lib_utils.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\libs\lib_utils.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\42cub3d.dir
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\libs
+
+build CMakeFiles/42cub3d.dir/error_handler.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/error_handler.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\error_handler.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\42cub3d.dir
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir
+
+build CMakeFiles/42cub3d.dir/parser/memory.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/parser/memory.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\parser\memory.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\42cub3d.dir
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\parser
+
+build CMakeFiles/42cub3d.dir/parser/parse_map_utils.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/parser/parse_map_utils.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\parser\parse_map_utils.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\42cub3d.dir
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\parser
+
+build CMakeFiles/42cub3d.dir/parser/parse_color_utils.c.obj: C_COMPILER__42cub3d_unscanned_Debug C$:/Users/dotte/CLionProjects/42cub3d/parser/parse_color_utils.c || cmake_object_order_depends_target_42cub3d
+  DEP_FILE = CMakeFiles\42cub3d.dir\parser\parse_color_utils.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\42cub3d.dir
+  OBJECT_FILE_DIR = CMakeFiles\42cub3d.dir\parser
 
 
 # =============================================================================
@@ -87,7 +123,7 @@ build CMakeFiles/42cub3d.dir/raycaster.c.obj: C_COMPILER__42cub3d_unscanned_Debu
 #############################################
 # Link the executable 42cub3d.exe
 
-build 42cub3d.exe: C_EXECUTABLE_LINKER__42cub3d_Debug CMakeFiles/42cub3d.dir/main.c.obj CMakeFiles/42cub3d.dir/parser/parser.c.obj CMakeFiles/42cub3d.dir/ft_split/ft_split.c.obj CMakeFiles/42cub3d.dir/ft_split/ft_split_utils.c.obj CMakeFiles/42cub3d.dir/raycaster.c.obj
+build 42cub3d.exe: C_EXECUTABLE_LINKER__42cub3d_Debug CMakeFiles/42cub3d.dir/main.c.obj CMakeFiles/42cub3d.dir/parser/parser.c.obj CMakeFiles/42cub3d.dir/libs/ft_split.c.obj CMakeFiles/42cub3d.dir/libs/ft_split_utils.c.obj CMakeFiles/42cub3d.dir/raycaster.c.obj CMakeFiles/42cub3d.dir/initialize.c.obj CMakeFiles/42cub3d.dir/libs/lib_utils.c.obj CMakeFiles/42cub3d.dir/error_handler.c.obj CMakeFiles/42cub3d.dir/parser/memory.c.obj CMakeFiles/42cub3d.dir/parser/parse_map_utils.c.obj CMakeFiles/42cub3d.dir/parser/parse_color_utils.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\42cub3d.dir

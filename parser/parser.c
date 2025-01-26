@@ -3,62 +3,51 @@
 
 void parse_texture(char *line, t_config *config)
 {
-    if (strncmp(line, "NO ", 3) == 0)
+    if (ft_strncmp(line, "NO ", 3) == 0)
     {
-        if (config->north_texture)
-            free(config->north_texture); // 기존 값 해제
-        config->north_texture = strdup(line + 3);
+        free(config->texture.north);
+        config->texture.north = strdup(line + 3);
     }
-    else if (strncmp(line, "SO ", 3) == 0)
+    else if (ft_strncmp(line, "SO ", 3) == 0)
     {
-        if (config->south_texture)
-            free(config->south_texture); // 기존 값 해제
-        config->south_texture = strdup(line + 3);
+        free(config->texture.south);
+        config->texture.south = strdup(line + 3);
     }
-    else if (strncmp(line, "WE ", 3) == 0)
+    else if (ft_strncmp(line, "WE ", 3) == 0)
     {
-        if (config->west_texture)
-            free(config->west_texture); // 기존 값 해제
-        config->west_texture = strdup(line + 3);
+        free(config->texture.west);
+        config->texture.west = strdup(line + 3);
     }
-    else if (strncmp(line, "EA ", 3) == 0)
+    else if (ft_strncmp(line, "EA ", 3) == 0)
     {
-        if (config->east_texture)
-            free(config->east_texture); // 기존 값 해제
-        config->east_texture = strdup(line + 3);
-    }
-    else
-    {
-        error_exit("Invalid texture key");
+        free(config->texture.east);
+        config->texture.east = strdup(line + 3);
     }
 }
 
-void parse_map(char *line, t_config *config) {
-    int i = 0;
+void parse_map(char *line, t_config *config)
+{
+    int i;
+    int len;
+    char *map_line;
 
-    // 왼쪽 공백 제거
+    i = 0;
     while (line[i] == ' ')
         i++;
-
-    char *map_line = strdup(line + i);
-    if (!map_line) {
+    map_line = strdup(line + i);
+    if (!map_line)
+    {
         free_config(config);
         error_exit("Memory allocation failed for map line");
-    }
-
-    // 오른쪽 공백 및 개행 문자 제거
-    int len = strlen(map_line);
-    while (len > 0 && (map_line[len - 1] == ' ' || map_line[len - 1] == '\n')) {
-        map_line[len - 1] = '\0'; // 개행 문자 제거
+    };
+    len = strlen(map_line);
+    while (len > 0 && (map_line[len - 1] == ' ' || map_line[len - 1] == '\n'))
+    {
+        map_line[len - 1] = '\0';
         len--;
     }
-
     add_map_line(config, map_line);
 }
-
-
-
-
 
 void parse_file(const char *filename, t_config *config)
 {
@@ -84,44 +73,20 @@ void parse_file(const char *filename, t_config *config)
 	close(fd);
 }
 
-int ft_isdigit(int c)
-{
-    return (c >= '0' && c <= '9');
-}
-
-void error_exit(const char *msg)
-{
-    printf("Error\n%s\n", msg);
-    exit(1);
-}
-
-int ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-    while (n--)
-    {
-        if (*s1 != *s2)
-            return (unsigned char)*s1 - (unsigned char)*s2;
-        if (*s1 == '\0')
-            return 0;
-        s1++;
-        s2++;
-    }
-    return 0;
-}
 
 void print_config(t_config *config)
 {
     int i;
 
     i = 0;
-    printf("North Texture: %s\n", config->north_texture);
-    printf("South Texture: %s\n", config->south_texture);
-    printf("West Texture: %s\n", config->west_texture);
-    printf("East Texture: %s\n", config->east_texture);
-    printf("Floor Color: %d, %d, %d\n",
-           config->floor_color[0], config->floor_color[1], config->floor_color[2]);
-    printf("Ceiling Color: %d, %d, %d\n",
-           config->ceiling_color[0], config->ceiling_color[1], config->ceiling_color[2]);
+    printf("North texture: %s\n", config->texture.north);
+    printf("South texture: %s\n", config->texture.south);
+    printf("West texture: %s\n", config->texture.west);
+    printf("East texture: %s\n", config->texture.east);
+    printf("Floor color: %d, %d, %d\n", config->floor_color[0], config->floor_color[1], config->floor_color[2]);
+    printf("Ceiling color: %d, %d, %d\n", config->ceiling_color[0], config->ceiling_color[1], config->ceiling_color[2]);
+    while (config->map[i])
+        printf("%s\n", config->map[i++]);
     if (config->map)
     {
         printf("Map:\n");
@@ -130,87 +95,6 @@ void print_config(t_config *config)
     }
 }
 
-void free_split(char **split)
-{
-    int i;
-
-    i = 0;
-    while (split[i])
-        free(split[i++]);
-    free(split);
-}
-
-void set_color(int *color, char **split)
-{
-    color[0] = ft_atoi(split[0]);
-    color[1] = ft_atoi(split[1]);
-    color[2] = ft_atoi(split[2]);
-}
-
-void parse_color(char *line, int *color)
-{
-    char **split;
-    int i;
-
-    split = ft_split(line, ',');
-    if (!split || !split[0] || !split[1] || !split[2])
-        error_exit("Invalid color format");
-    set_color(color, split);
-    i = -1;
-    while (++i < 3)
-    {
-        if (color[i] < 0 || color[i] > 255)
-        {
-            free_split(split);
-            error_exit("Color values must be in range [0,255]");
-        }
-    }
-    i = 0;
-    while (++i < 3)
-    {
-        if (!ft_isdigit(split[i][0]))
-        {
-            free_split(split);
-            error_exit("Color values must be numeric and in range [0,255]");
-        }
-    }
-    free_split(split);
-}
-void add_map_line(t_config *config, char *line) {
-    char **new_map;
-    int map_size = 0;
-
-    // 현재 맵의 크기 계산
-    while (config->map && config->map[map_size])
-        map_size++;
-
-    // 맵 크기 증가 (기존 크기 + 2)
-    new_map = realloc(config->map, sizeof(char *) * (map_size + 2));
-    if (!new_map) {
-        free_config(config); // 기존 메모리 해제
-        error_exit("Memory allocation failed");
-    }
-    config->map = new_map;
-
-    // 문자열에서 앞뒤 공백과 개행 문자 제거
-    while (*line == ' ') // 앞쪽 공백 제거
-        line++;
-
-    int len = strlen(line);
-    while (len > 0 && (line[len - 1] == ' ' || line[len - 1] == '\n')) {
-        line[len - 1] = '\0'; // 뒤쪽 공백 제거
-        len--;
-    }
-
-    // 새 맵 라인 추가
-    config->map[map_size] = strdup(line);
-    if (!config->map[map_size]) { // 할당 실패 시 정리
-        free_config(config); // 기존 메모리 해제
-        error_exit("Memory allocation failed");
-    }
-
-    config->map[map_size + 1] = NULL; // 맵 끝 표시
-}
 
 
 void parse_process(int fd, t_config *config)
@@ -254,38 +138,34 @@ void parse_config(const char *filename, t_config *config)
 
 void free_config(t_config *config)
 {
-    if (config->north_texture)
-        free(config->north_texture);
-    if (config->south_texture)
-        free(config->south_texture);
-    if (config->west_texture)
-        free(config->west_texture);
-    if (config->east_texture)
-        free(config->east_texture);
+    int i;
 
-    if (config->map) {
-        for (int i = 0; config->map[i]; i++)
+    if (!config)
+        return;
+    free(config->texture.east);
+    free(config->texture.west);
+    free(config->texture.north);
+    free(config->texture.south);
+    i = -1;
+    if (config->map)
+    {
+        while (config->map[++i])
             free(config->map[i]);
         free(config->map);
     }
+    i = -1;
+    if (config->image.addr[0])
+    {
+        while (++i < config->image.height)
+            free(config->image.addr[i]);
+        free(config->image.addr);
+    }
+
+    // MiniLibX 리소스 해제
+    if (config->win) mlx_destroy_window(config->mlx, config->win);
+    if (config->mlx) {
+        mlx_destroy_display(config->mlx);
+        free(config->mlx);
+    }
 }
 
-
-
-void init_config(t_config *config)
-{
-    config->north_texture = NULL;
-    config->south_texture = NULL;
-    config->west_texture = NULL;
-    config->east_texture = NULL;
-    config->floor_color[0] = -1;
-    config->floor_color[1] = -1;
-    config->floor_color[2] = -1;
-    config->ceiling_color[0] = -1;
-    config->ceiling_color[1] = -1;
-    config->ceiling_color[2] = -1;
-    config->map = NULL;
-    config->player_count = 0;
-    config->mlx = NULL;
-    config->win = NULL;
-}
