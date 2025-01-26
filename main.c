@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 
     if (argc != 2)
         return (printf("Usage: %s <config_file.cub>\n", argv[0]), 1);
-    init_game(&config);
+    init_game(&config, argv);
     mlx_hook(config.window.win, 2, 1L << 0, handle_keypress, &config.window);
     mlx_hook(config.window.win, 17, 0, close_window, &config.window);
     mlx_loop_hook(config.window.mlx, update_player, &config.window);

@@ -21,14 +21,14 @@ void add_map_line(t_config *config, char *line)
 	while (*line == ' ') // 앞쪽 공백 제거
 		line++;
 
-	int len = strlen(line);
+	int len = ft_strlen(line);
 	while (len > 0 && (line[len - 1] == ' ' || line[len - 1] == '\n')) {
 		line[len - 1] = '\0'; // 뒤쪽 공백 제거
 		len--;
 	}
 
 	// 새 맵 라인 추가
-	config->map[map_size] = strdup(line);
+	config->map[map_size] = ft_strdup(line);
 	if (!config->map[map_size]) { // 할당 실패 시 정리
 		free_config(config); // 기존 메모리 해제
 		error_exit("Memory allocation failed");

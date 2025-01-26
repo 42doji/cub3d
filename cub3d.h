@@ -23,16 +23,18 @@ typedef struct s_player
 	double angle;    // 플레이어의 방향 (라디안 단위)
 } t_player;
 
+
 typedef struct s_mlx_image
 {
-	void *img;              // 이미지 객체
-	char *addr;             // 이미지 데이터 주소
-	int bits_per_pixel;     // 픽셀당 비트 수
-	int line_length;        // 한 줄당 바이트 수
-	int endian;             // 엔디안 정보
-	int width;              // 이미지 너비
-	int height;             // 이미지 높이
+	void	*img;              // 이미지 객체
+	char	*addr;             // 이미지 데이터 (버퍼 포인터)
+	int		bits_per_pixel;    // 픽셀당 비트 수
+	int		line_length;       // 한 줄당 바이트 수
+	int		endian;            // 엔디안 정보
+	int		width;             // 이미지 너비
+	int		height;            // 이미지 높이
 } t_mlx_image;
+
 
 typedef struct s_mlx_window
 {
@@ -65,7 +67,7 @@ typedef struct s_config
 
 // 맵 초기화 및 유효성 검사
 void init_values(t_config *config);
-void init_game(t_config *config);
+void init_game(t_config *config, char **argv);
 void init_config(t_config *config);
 void free_config(t_config *config);
 int check_player_position(char **map, int *player_count);
@@ -87,16 +89,23 @@ void add_map_line(t_config *config, char *line);
 void free_split(char **split);
 void print_config(t_config *config);
 
+
+void load_textures(t_config *config);
+
 // mpa validator
 int is_map_valid(t_config *config);
 int is_wall(double x, double y, char **map);
 void error_exit(const char *msg);
 
 // 플레이어 및 렌더링
-void cast_rays(void *mlx, void *win, t_player *player, char **map);
-int handle_keypress(int keycode, t_config *config);
-int close_window(void *param);
-int update_player(t_config *config);
+
+void	render_column(t_config *config, int col, double distance);
+void	cast_rays(t_config *config);
+int		handle_keypress(int keycode, t_config *config);
+int		close_window(void *param);
+int		update_player(t_config *config);
+int	rgb_to_int(int r, int g, int b);
+
 
 // 유틸리티 함수
 int rgb_to_int(int r, int g, int b);
@@ -105,5 +114,13 @@ int world_to_map(double coord);
 // lib_utils
 int ft_strncmp(const char *s1, const char *s2, size_t n);
 int ft_isdigit(int c);
+char *ft_strdup(const char *s);
+int ft_strlen(const char *s);
+char *ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_strtrim(char *s1, char *set);
+int ft_strchr(const char *str, char c);
+
+void	check_texture_file(const char *path);
+void	validate_textures(t_config *config);
 
 #endif // CUB3D_H

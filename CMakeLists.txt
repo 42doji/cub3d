@@ -19,4 +19,5 @@ add_executable(42cub3d main.c
         error_handler.c
         parser/memory.c
         parser/parse_map_utils.c
-        parser/parse_color_utils.c)
+        parser/parse_color_utils.c
+        parser/debug_utils.c)

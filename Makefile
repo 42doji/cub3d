@@ -15,8 +15,12 @@ SRCS        = main.c \
               libs/lib_utils.c \
               parser/parser.c \
               parser/memory.c \
+              parser/debug_utils.c \
+              parser/parse_map_utils.c \
+              parser/parse_color_utils.c \
               raycaster.c \
-              error.c
+              error_handler.c \
+              initialize.c
 
 
 OBJS        = $(SRCS:.c=.o)

@@ -19,14 +19,6 @@ int check_player_position(char **map, int *player_count)
 	return 1;
 }
 
-int ft_strlen(char *str)
-{
-	int i = 0;
-	while (str[i])
-		i++;
-	return i;
-}
-
 int check_map_borders(char **map)
 {
 	int i;
@@ -71,18 +63,6 @@ int check_map_borders(char **map)
 		}
 	}
 	return 1;
-}
-
-int ft_strchr(char *str, char c)
-{
-	int i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return 1;
-		i++;
-	}
-	return 0;
 }
 
 int check_valid_characters(char **map)
@@ -136,4 +116,11 @@ int is_map_valid(t_config *config)
 	printf("Map is valid.\n");
 	print_config(config);
 	return 1;
+}
+
+void	validate_textures(t_config *config)
+{
+	if (!config->texture.north || !config->texture.south ||
+		!config->texture.west || !config->texture.east)
+		error_exit("맵 설정 파일에 텍스처 경로가 누락되었습니다.");
 }
